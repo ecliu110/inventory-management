@@ -11,16 +11,18 @@ const readJson = function(fpath: string) {
 };
 
 test('Success', () => {
+  const inventoryManager = new InMemoryInventoryManager();
   const orders: Order[] = readJson('./fixtures/success/orders.json');
   const restocks: Restock[] = readJson('./fixtures/success/restocks.json');
   const { success, inventory } = testRestockingAlgorithm(orders,
-    restocks, new InMemoryInventoryManager());
+    restocks, inventoryManager);
     expect(success).toBe(true);
     expect(inventory['shovel']).toBe(4);
     expect(inventory['snowblower']).toBe(4);
     expect(inventory['tires']).toBe(2);
     expect(inventory['sled']).toBe(1);
-    expect(inventory['skis']).toBe(0);
+    expect(inventory['skis']).toBe(undefined);
+    expect(inventoryManager.checkInventoryItem('skis')).toBe(0);
 });
 
 test('Out of stock', () => {

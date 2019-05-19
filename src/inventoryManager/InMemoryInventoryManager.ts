@@ -1,4 +1,5 @@
 import { InventoryManager } from '../types/inventory';
+import * as _ from 'lodash';
 
 export class InMemoryInventoryManager implements InventoryManager {
   private _inventory: { [key: string]: number };
@@ -25,6 +26,8 @@ export class InMemoryInventoryManager implements InventoryManager {
   }
 
   getInventory(): { [key: string]: number} {
-    return this._inventory;
+    return _.omitBy(this._inventory, (valueKey) => {
+      return valueKey === 0;
+    });
   }
 }

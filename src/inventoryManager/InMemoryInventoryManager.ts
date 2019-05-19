@@ -1,10 +1,10 @@
 import { InventoryManager } from '../types/inventory';
 
-export class InMemoryInventoryManager implements InventoryManager{
+export class InMemoryInventoryManager implements InventoryManager {
   private _inventory: { [key: string]: number };
 
   constructor() {
-    this._inventory = {}
+    this._inventory = {};
   }
 
   addInventoryItem(type: string, amount: number): number {

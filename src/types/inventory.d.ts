@@ -1,6 +1,6 @@
 export interface InventoryManager {
-  addInventoryItem(type: string, amount: number) : number;
-  getInventoryItem(type: string, amount: number) : boolean;
+  addInventoryItem(type: string, amount: number): number;
+  getInventoryItem(type: string, amount: number): boolean;
   checkInventoryItem(type: string): number;
   getInventory(): { [key: string]: number };
 }
@@ -15,15 +15,15 @@ export interface Order {
 }
 
 export interface Restock {
-  restock_date: string,
-  item_stocked: string,
-  item_quantity: string,
-  manufacturer: string,
-  wholesale_price: string
+  restock_date: string;
+  item_stocked: string;
+  item_quantity: string;
+  manufacturer: string;
+  wholesale_price: string;
 }
 
 export interface TestInventoryResponse {
-  success: boolean,
-  order?: Order,
-  inventory?: { [key: string] : number }
+  success: boolean;
+  order?: Order;
+  inventory?: { [key: string]: number };
 }

@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as _ from 'lodash';
 import { InMemoryInventoryManager } from './inventoryManager/InMemoryInventoryManager';
 import { Order, Restock } from './types/inventory';
-import { testRestockingAlgorithm} from './utils/testRestockingAlgorithm';
+import { testRestockingAlgorithm } from './utils/testRestockingAlgorithm';
 
 
 const orders: Order[] = JSON.parse(fs.readFileSync('orders.json', 'utf-8'));

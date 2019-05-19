@@ -4,6 +4,8 @@ import * as inquirer from 'inquirer';
 import { InMemoryInventoryManager } from './inventoryManager/InMemoryInventoryManager';
 import { Order, Restock } from './types/inventory';
 import { testRestockingAlgorithm } from './utils/testRestockingAlgorithm';
+import { OrdersValidator } from './validators/orders.validator';
+import { RestocksValidator } from './validators/restocks.validator';
 
 async function promptInputs(): Promise<inquirer.Answers> {
   return await inquirer.prompt([
@@ -30,8 +32,9 @@ async function promptInputs(): Promise<inquirer.Answers> {
 
 async function begin() {
   const { orderFilePath, restockFilePath } = await promptInputs();
-  const ordersJson = JSON.parse(fs.readFileSync(orderFilePath, 'utf-8'));
-  const restocksJson = JSON.parse(fs.readFileSync(restockFilePath, 'utf-8'));
+
+  const ordersJson = OrdersValidator.validateJson(fs.readFileSync(orderFilePath, 'utf-8'));
+  const restocksJson = RestocksValidator.validateJson(fs.readFileSync(restockFilePath, 'utf-8'));
 
   const { success, order, inventory } = testRestockingAlgorithm(
     ordersJson,

@@ -30,10 +30,13 @@
   },
   "homepage": "https://github.com/ecliu110/inventory-management#readme",
   "dependencies": {
+    "@hapi/joi": "^15.0.3",
+    "@hapi/joi-date": "^1.3.0",
     "inquirer": "^6.3.1",
     "lodash": "^4.17.11"
   },
   "devDependencies": {
+    "@types/hapi": "^18.0.2",
     "@types/inquirer": "^6.0.2",
     "@types/jest": "^24.0.13",
     "@types/lodash": "^4.14.129",

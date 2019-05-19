@@ -27,6 +27,22 @@ SUCCESS
  {"shovel":4,"snowblower":4,"tires":2,"sled":1}
  ```
 
+ ## JSON Validation
+ This program utilizes [hapi/joi](https://github.com/hapijs/joi) for validation. The program will exit if JSON validation fails, before testing if the algorithm was successfull.
+ 
+ - Required fields
+ The fields specified in the sample `orders.json` and `restocks.json` are all required.
+See `src/validators` for details.
+
+- Extra fields
+If there are any extra/non-required fields included, the validation will still pass.
+
+- Field types
+`order_date` and `restock_date` must be a string of Date format.
+`item_quantity` must be an integer.
+`item_price` must be a number.
+See `src/validators` for full type details.
+ 
 ## Development commands
 - Build and start the project
 ```

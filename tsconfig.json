@@ -19,6 +19,6 @@
       }
   },
   "include": [
-      "src/**/*", "src/types/inventoryManager.d.ts"
+      "src/**/*"
   ]
 }

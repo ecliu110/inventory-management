@@ -1,0 +1,18 @@
+[
+  {
+    "order_id": "1",
+    "customer_id": "4",
+    "order_date": "2018-03-09T13:13:29",
+    "item_ordered": "sled",
+    "item_quantity": "6",
+    "item_price": "96.93"
+  },
+  {
+    "order_id": "2",
+    "customer_id": "14",
+    "order_date": "2018-09-26T00:27:33",
+    "item_ordered": "tires",
+    "item_quantity": "7",
+    "item_price": "101.31"
+  }
+]

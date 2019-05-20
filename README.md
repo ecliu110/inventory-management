@@ -2,6 +2,10 @@
 
 Given a list of orders and restocks, determine if the restocking algorithm was a SUCCESS (was able to fulfill all orders) or OUT OF STOCK (insufficient inventory to complete an order).
 
+## Assumptions
+1. If the timestamp for an order and a restock are the same, the order will take precedent/execute first.
+2. If there are additional restocks after all orders are complete, the remaining restocks will still be processed.
+
 ## Pre-reqs
 - Install [Node.js](https://nodejs.org/en/)
 
@@ -17,7 +21,7 @@ npm run build
 npm run start
 ```
 
-- Follow the command line prompts. Enter the path of ther orders and restocks json files.
+- Follow the command line prompts. Enter the path of ther orders and restocks json files. The current directory `./` points to the root of this directory.
 
 Example console output:
 ```

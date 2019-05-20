@@ -10,10 +10,10 @@ export const testRestockingAlgorithm = function(orders: Order[], restocks: Resto
   while (orders.length > 0) {
     if (restocks.length > 0 && (restocks[0].restock_date < orders[0].order_date)) {
       const { item_stocked, item_quantity } = restocks.shift();
-      inventoryManager.addInventoryItem(item_stocked, parseInt(item_quantity));
+      inventoryManager.addInventoryItem(item_stocked, item_quantity);
     } else {
       const currOrder: Order = orders.shift();
-      const fullfilledOrder: boolean = inventoryManager.getInventoryItem(currOrder.item_ordered, parseInt(currOrder.item_quantity));
+      const fullfilledOrder: boolean = inventoryManager.getInventoryItem(currOrder.item_ordered, currOrder.item_quantity);
       if (fullfilledOrder === false) {
         return {
           success: false,
@@ -26,7 +26,7 @@ export const testRestockingAlgorithm = function(orders: Order[], restocks: Resto
   // Restock any remaining restock events
   while (restocks.length > 0) {
     const { item_stocked, item_quantity } = restocks.shift();
-    inventoryManager.addInventoryItem(item_stocked, parseInt(item_quantity));
+    inventoryManager.addInventoryItem(item_stocked, item_quantity);
   }
   return {
     success: true,

@@ -8,18 +8,18 @@ export interface InventoryManager {
 export interface Order {
   order_id: string;
   customer_id: string;
-  order_date: string;
+  order_date: Date;
   item_ordered: string;
-  item_quantity: string;
-  item_price: string;
+  item_quantity: number;
+  item_price: number;
 }
 
 export interface Restock {
-  restock_date: string;
+  restock_date: Date;
   item_stocked: string;
-  item_quantity: string;
+  item_quantity: number;
   manufacturer: string;
-  wholesale_price: string;
+  wholesale_price: number;
 }
 
 export interface TestInventoryResponse {

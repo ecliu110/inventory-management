@@ -45,7 +45,7 @@ async function begin() {
     console.log(`SUCCESS\n ${JSON.stringify(inventory)}`);
   } else {
     console.log(
-      `OUT OF STOCK\n order_date: ${order.order_date}, item_ordered: ${
+      `OUT OF STOCK\n order_date: ${order.order_date.toISOString()}, item_ordered: ${
         order.item_ordered
       }`
     );

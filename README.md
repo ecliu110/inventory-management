@@ -5,6 +5,7 @@ Given a list of orders and restocks, determine if the restocking algorithm was a
 ## Assumptions
 1. If the timestamp for an order and a restock are the same, the order will take precedent/execute first.
 2. If there are additional restocks after all orders are complete, the remaining restocks will still be processed.
+3. The manufacturer of the item does not matter. Any item with the same `item_ordered` or `item_stocked` value is considered the same.
 
 ## Pre-reqs
 - Install [Node.js](https://nodejs.org/en/)

@@ -2,6 +2,10 @@
 
 Given a list of orders and restocks, determine if the restocking algorithm was a SUCCESS (was able to fulfill all orders) or OUT OF STOCK (insufficient inventory to complete an order).
 
+## Assumptions
+1. If the timestamp for an order and a restock are the same, the order will take precedent/execute first.
+2. If there are additional restocks after all orders are complete, the remaining restocks will still be processed.
+
 ## Pre-reqs
 - Install [Node.js](https://nodejs.org/en/)
 
@@ -17,15 +21,23 @@ npm run build
 npm run start
 ```
 
-- Follow the command line prompts. Enter the path of ther orders and restocks json files.
+- Follow the command line prompts. Enter the path of ther orders and restocks json files. The current directory `./` points to the root of this directory.
 
-Example console output:
+Example 1:
 ```
 ? File path to orders file orders.json
 ? File path to restocks file restocks.json
 SUCCESS
  {"shovel":4,"snowblower":4,"tires":2,"sled":1}
  ```
+
+Example 2:
+```
+? File path to orders file ./src/__tests__/fixtures/failure/orders.json
+? File path to restocks file ./src/__tests__/fixtures/failure/restocks.json
+OUT OF STOCK
+ order_date: 2018-03-09T19:13:29.000Z, item_ordered: sled
+``` 
 
  ## JSON Validation
  This program utilizes [hapi/joi](https://github.com/hapijs/joi) for validation. The program will exit if JSON validation fails, before testing if the algorithm was successfull.

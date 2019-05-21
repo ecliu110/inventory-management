@@ -12,8 +12,8 @@ const readJson = function(fpath: string) {
 
 test('Success', () => {
   const inventoryManager = new InMemoryInventoryManager();
-  const orders: Order[] = readJson('./fixtures/success/orders.json');
-  const restocks: Restock[] = readJson('./fixtures/success/restocks.json');
+  const orders: Order[] = readJson('./fixtures/success/givenSampleOrders.json');
+  const restocks: Restock[] = readJson('./fixtures/success/givenSampleRestocks.json');
   const { success, inventory } = testRestockingAlgorithm(orders,
     restocks, inventoryManager);
     expect(success).toBe(true);
@@ -25,7 +25,20 @@ test('Success', () => {
     expect(inventoryManager.checkInventoryItem('skis')).toBe(0);
 });
 
-test('Out of stock', () => {
+test('Sucess, restock after all order fulfilled', () => {
+  const inventoryManager = new InMemoryInventoryManager();
+  const orders: Order[] = readJson('./fixtures/success/simpleOrder.json');
+  const restocks: Restock[] = readJson('./fixtures/success/restockAfterOrder.json');
+  const { success, inventory } = testRestockingAlgorithm(orders,
+    restocks, inventoryManager);
+    console.log(JSON.stringify(inventory));
+    expect(success).toBe(true);
+    expect(inventory['shovel']).toBe(45);
+    expect(inventoryManager.checkInventoryItem('sled')).toBe(0);
+});
+
+
+test('Failure, Out of stock', () => {
   const orders: Order[] = readJson('./fixtures/failure/orders.json');
   const restocks: Restock[] = readJson('./fixtures/failure/restocks.json');
   const { success, order } = testRestockingAlgorithm(orders,
@@ -35,15 +48,12 @@ test('Out of stock', () => {
     expect(order.order_date).toBe('2018-03-09T13:13:29');
 });
 
-
-test('Sucess, restock after all order fulfilled', () => {
-  const inventoryManager = new InMemoryInventoryManager();
-  const orders: Order[] = readJson('./fixtures/success/orders2.json');
-  const restocks: Restock[] = readJson('./fixtures/success/restocks2.json');
-  const { success, inventory } = testRestockingAlgorithm(orders,
-    restocks, inventoryManager);
-    console.log(JSON.stringify(inventory));
-    expect(success).toBe(true);
-    expect(inventory['shovel']).toBe(45);
-    expect(inventoryManager.checkInventoryItem('sled')).toBe(0);
+test('Failure, simultaneous order and restock', () => {
+  const orders: Order[] = readJson('./fixtures/failure/sameTimeOrder.json');
+  const restocks: Restock[] = readJson('./fixtures/failure/sameTimeRestock.json');
+  const { success, order } = testRestockingAlgorithm(orders,
+    restocks, new InMemoryInventoryManager());
+    expect(success).toBe(false);
+    expect(order.item_ordered).toBe('sled');
+    expect(order.order_date).toBe('2018-03-09T13:13:29');
 });
